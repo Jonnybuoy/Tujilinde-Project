@@ -53,45 +53,46 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:text="CREATE NEW ACCOUNT"
+        android:text="PLEASE ENTER YOUR PHONE NUMBER"
         android:textColor="#F8F8F8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.456"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/homeDescriptionTxtView" />
 
+    <Spinner
+        android:id="@+id/countries_spinner"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="130dp"
+        android:background="#F7FAF7F7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/civphoneNumberText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeLoginbtn" />
+
     <EditText
-        android:id="@+id/emailText"
+        android:id="@+id/civphoneNumberText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="@color/common_google_signin_btn_text_dark_default"
         android:ems="10"
-        android:hint="Email"
-        android:inputType="textPersonName"
+        android:hint="Phone number"
+        android:inputType="phone"
         android:padding="10dp"
         android:textColor="@android:color/black"
+        android:maxLength="10"
+        android:digits="0123456789"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-    <EditText
-        android:id="@+id/passwordText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="@color/common_google_signin_btn_text_dark_default"
-        android:ems="10"
-        android:hint="Password"
-        android:padding="10dp"
-        android:inputType="textPersonName"
-        android:textColor="@android:color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailText" />
 
     <Button
-        android:id="@+id/registerButton"
+        android:id="@+id/civregisterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#009688"
@@ -102,20 +103,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordText" />
+        app:layout_constraintTop_toBottomOf="@+id/civphoneNumberText" />
 
     <TextView
         android:id="@+id/textViewLogin"
         android:layout_width="65dp"
         android:layout_height="17dp"
-        android:layout_marginBottom="24dp"
         android:text="Already registered? Sign In"
         android:textColor="#FFC107"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerButton" />
+        app:layout_constraintTop_toBottomOf="@+id/civregisterButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

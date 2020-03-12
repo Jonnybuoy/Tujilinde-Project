@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Tujilinde</string>
     <string name="title_activity_civilian_maps">Map</string>
+    <string name="title_activity_agent_maps">Map</string>
 </resources>
