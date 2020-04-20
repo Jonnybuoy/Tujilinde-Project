@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class UserType extends AppCompatActivity {
+public class UserTypeActivity extends AppCompatActivity {
     private Button agent, civilian;
 
     @Override
@@ -21,7 +21,7 @@ public class UserType extends AppCompatActivity {
         agent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserType.this, RegisterActivity.class);
+                Intent intent = new Intent(UserTypeActivity.this, AgentRegisterActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -30,7 +30,7 @@ public class UserType extends AppCompatActivity {
         civilian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserType.this, CivilianRegisterActivity.class);
+                Intent intent = new Intent(UserTypeActivity.this, CivilianRegisterActivity.class);
                 startActivity(intent);
                 finish();
             }

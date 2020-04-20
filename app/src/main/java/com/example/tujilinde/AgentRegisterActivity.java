@@ -8,7 +8,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class RegisterActivity extends AppCompatActivity {
+public class AgentRegisterActivity extends AppCompatActivity {
     EditText mPhone;
     Button mRegister;
 
@@ -34,7 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
 
-                Intent intent = new Intent(RegisterActivity.this, VerifyPhoneActivity.class);
+                Intent intent = new Intent(AgentRegisterActivity.this, AgentVerifyPhoneActivity.class);
                 intent.putExtra("mobile", mobile);
                 startActivity(intent);
 

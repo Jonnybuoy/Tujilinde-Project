@@ -16,6 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".CivilianNavigationActivity"
+            android:exported="true"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -32,15 +35,16 @@
             android:name=".AgentMapsActivity"
             android:label="@string/title_activity_agent_maps" />
         <activity android:name=".CivilianVerifyPhoneActivity" />
-        <activity android:name=".VerifyPhoneActivity" />
+        <activity android:name=".AgentVerifyPhoneActivity" />
         <activity
             android:name=".CivilianMapsActivity"
-            android:label="@string/title_activity_civilian_maps" />
+            android:label="@string/title_activity_civilian_maps"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".CivilianProfileActivity" />
         <activity android:name=".CivilianRegisterActivity" />
         <activity android:name=".AgentProfileActivity" />
-        <activity android:name=".UserType" />
-        <activity android:name=".RegisterActivity" />
+        <activity android:name=".UserTypeActivity" />
+        <activity android:name=".AgentRegisterActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
