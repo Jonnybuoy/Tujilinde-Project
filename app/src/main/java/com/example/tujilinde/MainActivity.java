@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }else if (dataSnapshot.child("Civilians").child(user_id).exists()){
 
-                        startActivity(new Intent(MainActivity.this, CivilianMapsActivity.class));
+                        startActivity(new Intent(MainActivity.this, CivilianNavigationActivity.class));
                     }else {
                         Toast.makeText(MainActivity.this, "User Type not saved", Toast.LENGTH_SHORT).show();
                     }

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -24,6 +25,8 @@ public class CivilianNavigationActivity extends AppCompatActivity implements Nav
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_civilian_navigation);
+
+        changeFragment();
 
 
         drawerLayout = findViewById(R.id.drawer);
@@ -74,5 +77,16 @@ public class CivilianNavigationActivity extends AppCompatActivity implements Nav
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void changeFragment () {
+
+        FragmentTransaction transaction;
+        transaction = getSupportFragmentManager().beginTransaction();
+
+        transaction.replace(R.id.fragment_container, new CivilianMapsFragment());
+        transaction.commit();
+
+
     }
 }

@@ -9,7 +9,6 @@
     tools:context=".CivilianNavigationActivity"
     tools:openDrawer="start">
 
-    <include layout="@layout/activity_civilian_maps" />
 
     <LinearLayout
         android:layout_width="match_parent"
