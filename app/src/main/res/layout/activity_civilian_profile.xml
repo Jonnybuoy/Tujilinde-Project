@@ -61,20 +61,7 @@
         app:layout_constraintTop_toBottomOf="@+id/homeDescriptionTxtView" />
 
 
-    <Button
-        android:id="@+id/civSubmitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#009688"
-        android:ems="18"
-        android:padding="10dp"
-        android:text="SUBMIT"
-        android:textColor="#F4F8F4"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textDate" />
+
 
     <EditText
         android:id="@+id/textLegalName"
@@ -123,6 +110,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textIdNumber"
         app:layout_constraintVertical_bias="0.072" />
+
+    <Button
+        android:id="@+id/civSubmitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#009688"
+        android:ems="18"
+        android:padding="10dp"
+        android:text="SUBMIT"
+        android:textColor="#F4F8F4"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDate" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

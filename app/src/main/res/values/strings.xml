@@ -17,7 +17,7 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="title_activity_civilian_navigation">CivilianNavigationActivity</string>
-    
+
     <string name="drawerOpen">drawerOpen</string>
     <string name="drawerClose">drawerClose</string>
 </resources>

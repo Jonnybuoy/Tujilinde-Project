@@ -152,7 +152,7 @@ public class CivilianProfileActivity extends AppCompatActivity {
         userInfo.put("DOB",mDOB);
         mCivilianDatabase.updateChildren(userInfo);
 
-        Intent intent = new Intent(CivilianProfileActivity.this, CivilianNavigationActivity.class);
+        Intent intent = new Intent(CivilianProfileActivity.this, CrimeDetailsActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
 
