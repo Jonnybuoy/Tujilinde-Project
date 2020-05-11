@@ -2,6 +2,7 @@ package com.example.tujilinde;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -12,6 +13,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Map;
 
 public class CivilianNavigationActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -19,6 +28,7 @@ public class CivilianNavigationActivity extends AppCompatActivity implements Nav
     Toolbar toolbar;
     NavigationView navigationView;
     ActionBarDrawerToggle toogle;
+
 
 
     @Override
@@ -32,6 +42,7 @@ public class CivilianNavigationActivity extends AppCompatActivity implements Nav
         drawerLayout = findViewById(R.id.drawer);
         toolbar = findViewById(R.id.toolbar);
         navigationView = findViewById(R.id.navigationView);
+
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.reportHistory);
         setSupportActionBar(toolbar);
@@ -40,6 +51,9 @@ public class CivilianNavigationActivity extends AppCompatActivity implements Nav
         toogle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawerOpen,R.string.drawerClose);
         drawerLayout.addDrawerListener(toogle);
         toogle.syncState();
+
+
+
 
 
     }

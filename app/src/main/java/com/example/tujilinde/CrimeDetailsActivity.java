@@ -8,13 +8,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 public class CrimeDetailsActivity extends AppCompatActivity {
 
@@ -26,13 +36,17 @@ public class CrimeDetailsActivity extends AppCompatActivity {
     Button mDetailsBtn;
 
     private FirebaseAuth mAuth;
-    private DatabaseReference mCivilianDatabase;
+    private DatabaseReference reportDetailsRef;
 
     private String userId;
     private String crime_category;
     private String crime_type;
     private String reporter_type;
     private String crime_description;
+    private String currentTime;
+    private Random random;
+    private int reference_number;
+
 
 
 
@@ -47,6 +61,19 @@ public class CrimeDetailsActivity extends AppCompatActivity {
         mReporterType = findViewById(R.id.spinnerReporterType);
         mCrimeDesc = findViewById(R.id.textCrimeDesc);
         mDetailsBtn = findViewById(R.id.crime_details_submit_btn);
+
+        mAuth = FirebaseAuth.getInstance();
+        userId = mAuth.getCurrentUser().getUid();
+        mDetailsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveCrimeDetails();
+            }
+        });
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyy hh:mm:ss a");
+        currentTime = simpleDateFormat.format(calendar.getTime());
 
         List<String> crimeCat = new ArrayList<>();
         crimeCat.add(0, "Crime Category");
@@ -122,7 +149,7 @@ public class CrimeDetailsActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(parent.getItemAtPosition(position).equals("Crime Category")){
-                    // do nothing
+                    mCrimeType.setPrompt("You need to choose a selection");
                 }
                 else if(parent.getItemAtPosition(position).equals("Personal Crime")){
 
@@ -190,11 +217,74 @@ public class CrimeDetailsActivity extends AppCompatActivity {
             }
         });
 
+        getCrimeReportDetails();
+
 
 
     }
 
+    public void generateReferenceNumber(){
+        random = new Random();
+        reference_number = random.nextInt(10000);
+
+    }
 
 
+    public void getCrimeReportDetails(){
+        reportDetailsRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Civilians").child(userId).child("Report details");
+        reportDetailsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists() && dataSnapshot.getChildrenCount() > 0 ){
+                    Map <String, Object> map = (Map<String, Object>) dataSnapshot.getValue();
+                    if(map.get("Crime Category") != null){
+                        crime_category = map.get("Crime Category").toString();
+
+                    }
+                    if(map.get("Crime Type") != null){
+                        crime_type = map.get("Crime Type").toString();
+
+                    }
+                    if(map.get("Reporter") != null){
+                        reporter_type = map.get("Reporter").toString();
+
+                    }
+                    if(map.get("Crime Description") != null){
+                        crime_description = map.get("Crime Description").toString();
+                        mCrimeDesc.setText(crime_description);
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    public void saveCrimeDetails(){
+        generateReferenceNumber();
+        crime_description = mCrimeDesc.getText().toString();
+
+        if (crime_description.isEmpty()){
+            mCrimeDesc.setError("This field is required");
+        }
+        Map crimeDetails = new HashMap();
+        crimeDetails.put("Crime Category", crime_category);
+        crimeDetails.put("Crime Type", crime_type);
+        crimeDetails.put("Reporter", reporter_type);
+        crimeDetails.put("Crime Description", crime_description);
+        crimeDetails.put("Date of report", currentTime);
+        crimeDetails.put("Reference code", "RF" + reference_number);
+        reportDetailsRef.updateChildren(crimeDetails);
+
+        finish();
+
+
+    }
 
 }

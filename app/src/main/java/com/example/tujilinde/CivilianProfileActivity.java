@@ -52,7 +52,7 @@ public class CivilianProfileActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         userId = mAuth.getCurrentUser().getUid();
-        mCivilianDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child("Civilians").child(userId);
+        mCivilianDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child("Civilians").child(userId).child("Profile Details");
 
         getUserInformation();
 
@@ -99,8 +99,8 @@ public class CivilianProfileActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists() && dataSnapshot.getChildrenCount()>0){
                     Map <String,Object> map  = (Map<String, Object>) dataSnapshot.getValue();
-                    if(map.get("name")!= null){
-                        mName = map.get("name").toString();
+                    if(map.get("Name")!= null){
+                        mName = map.get("Name").toString();
                         mNameField.setText(mName);
                     }
 
@@ -147,12 +147,12 @@ public class CivilianProfileActivity extends AppCompatActivity {
         }
 
         Map userInfo = new HashMap();
-        userInfo.put("name",mName);
+        userInfo.put("Name",mName);
         userInfo.put("National ID",mID);
         userInfo.put("DOB",mDOB);
         mCivilianDatabase.updateChildren(userInfo);
 
-        Intent intent = new Intent(CivilianProfileActivity.this, CrimeDetailsActivity.class);
+        Intent intent = new Intent(CivilianProfileActivity.this, CivilianNavigationActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
 
